@@ -1,4 +1,4 @@
-@STATIC;1.0;p;9;CupDraw.jt;3362;@STATIC;1.0;i;23;CPCancelableTextField.ji;22;LPMultiLineTextField.ji;24;CPCustomRowTableColumn.ji;15;GeometryUtils.ji;14;HandleMagnet.ji;8;Figure.ji;17;CompositeFigure.ji;7;Model.ji;10;Property.ji;6;Grid.ji;9;Drawing.ji;14;DrawingModel.ji;8;Handle.ji;17;CompositeFigure.ji;10;Polyline.ji;12;Connection.ji;13;ImageFigure.ji;15;ToolboxFigure.ji;13;LabelFigure.ji;12;LinkFigure.ji;18;PropertiesFigure.ji;17;IconLabelFigure.ji;17;RectangleFigure.ji;13;GroupFigure.ji;11;ToolState.ji;27;SelectionToolInitialState.ji;15;SelectedState.ji;18;MoveFiguresState.ji;17;MoveHandleState.ji;23;MarqueeSelectionState.ji;6;Tool.ji;18;StateMachineTool.ji;15;SelectionTool.ji;26;AbstractCreateFigureTool.ji;30;AbstractCreateConnectionTool.ji;17;CreateImageTool.ji;17;CreateLabelTool.ji;9;Command.ji;14;GroupCommand.ji;16;UngroupCommand.ji;13;LockCommand.ji;15;UnlockCommand.ji;21;BringToFrontCommand.ji;19;SendToBackCommand.ji;21;BringForwardCommand.ji;21;SendBackwardCommand.ji;18;AlignLeftCommand.ji;19;AlignRightCommand.ji;20;AlignCenterCommand.ji;17;AlignTopCommand.ji;20;AlignBottomCommand.ji;20;AlignMiddleCommand.ji;16;EditorDelegate.jt;2232;
+@STATIC;1.0;p;9;CupDraw.jt;3421;@STATIC;1.0;i;23;CPCancelableTextField.ji;22;LPMultiLineTextField.ji;24;CPCustomRowTableColumn.ji;15;GeometryUtils.ji;14;HandleMagnet.ji;8;Figure.ji;17;CompositeFigure.ji;7;Model.ji;10;Property.ji;6;Grid.ji;9;Drawing.ji;14;DrawingModel.ji;8;Handle.ji;17;CompositeFigure.ji;10;Polyline.ji;12;Connection.ji;13;ImageFigure.ji;15;ToolboxFigure.ji;13;LabelFigure.ji;12;LinkFigure.ji;18;PropertiesFigure.ji;17;IconLabelFigure.ji;17;RectangleFigure.ji;14;CircleFigure.ji;13;GroupFigure.ji;11;ToolState.ji;27;SelectionToolInitialState.ji;15;SelectedState.ji;18;MoveFiguresState.ji;17;MoveHandleState.ji;23;MarqueeSelectionState.ji;6;Tool.ji;18;StateMachineTool.ji;15;SelectionTool.ji;26;AbstractCreateFigureTool.ji;30;AbstractCreateConnectionTool.ji;17;CreateImageTool.ji;17;CreateLabelTool.ji;9;Command.ji;14;GroupCommand.ji;16;UngroupCommand.ji;13;LockCommand.ji;15;UnlockCommand.ji;21;BringToFrontCommand.ji;19;SendToBackCommand.ji;21;BringForwardCommand.ji;21;SendBackwardCommand.ji;18;AlignLeftCommand.ji;19;AlignRightCommand.ji;20;AlignCenterCommand.ji;17;AlignTopCommand.ji;20;AlignBottomCommand.ji;20;AlignMiddleCommand.ji;16;EditorDelegate.jt;2272;
 objj_executeFile("CPCancelableTextField.j",YES);
 objj_executeFile("LPMultiLineTextField.j",YES);
 objj_executeFile("CPCustomRowTableColumn.j",YES);
@@ -22,6 +22,7 @@ objj_executeFile("LinkFigure.j",YES);
 objj_executeFile("PropertiesFigure.j",YES);
 objj_executeFile("IconLabelFigure.j",YES);
 objj_executeFile("RectangleFigure.j",YES);
+objj_executeFile("CircleFigure.j",YES);
 objj_executeFile("GroupFigure.j",YES);
 objj_executeFile("ToolState.j",YES);
 objj_executeFile("SelectionToolInitialState.j",YES);
@@ -850,6 +851,45 @@ with(_39){
 objj_msgSendSuper({receiver:_39,super_class:objj_getClass("LPMultiLineTextField").super_class},"encodeWithCoder:",_3b);
 objj_msgSend(_3b,"encodeObject:forKey:",_stringValue,_34);
 objj_msgSend(_3b,"encodeBool:forKey:",(_hideOverflow?NO:YES),_35);
+}
+})]);
+p;14;CircleFigure.jt;1801;@STATIC;1.0;t;1782;
+var _1=objj_allocateClassPair(Figure,"CircleFigure"),_2=_1.isa;
+objj_registerClassPair(_1);
+class_addMethods(_1,[new objj_method(sel_getUid("initWithFrame:"),function(_3,_4,_5){
+with(_3){
+_3=objj_msgSendSuper({receiver:_3,super_class:objj_getClass("CircleFigure").super_class},"initWithFrame:",_5);
+if(_3){
+objj_msgSend(handles,"addObject:",objj_msgSend(Handle,"target:selector:",_3,"topLeft"));
+objj_msgSend(handles,"addObject:",objj_msgSend(Handle,"target:selector:",_3,"topMiddle"));
+objj_msgSend(handles,"addObject:",objj_msgSend(Handle,"target:selector:",_3,"topRight"));
+objj_msgSend(handles,"addObject:",objj_msgSend(Handle,"target:selector:",_3,"middleLeft"));
+objj_msgSend(handles,"addObject:",objj_msgSend(Handle,"target:selector:",_3,"middleRight"));
+objj_msgSend(handles,"addObject:",objj_msgSend(Handle,"target:selector:",_3,"bottomLeft"));
+objj_msgSend(handles,"addObject:",objj_msgSend(Handle,"target:selector:",_3,"bottomMiddle"));
+objj_msgSend(handles,"addObject:",objj_msgSend(Handle,"target:selector:",_3,"bottomRight"));
+return _3;
+}
+}
+}),new objj_method(sel_getUid("drawRect:on:"),function(_6,_7,_8,_9){
+with(_6){
+CGContextSetFillColor(_9,objj_msgSend(_6,"backgroundColor"));
+CGContextFillEllipseInRect(_9,objj_msgSend(_6,"bounds"));
+CGContextSetLineWidth(_9,0.5);
+CGContextSetStrokeColor(_9,objj_msgSend(_6,"foregroundColor"));
+CGContextStrokeEllipseInRect(_9,objj_msgSend(_6,"bounds"));
+}
+})]);
+class_addMethods(_2,[new objj_method(sel_getUid("newAt:"),function(_a,_b,_c){
+with(_a){
+var _d=CGRectMake(_c.x,_c.y,50,50);
+var _e=objj_msgSend(objj_msgSend(_a,"new"),"initWithFrame:",_d);
+return _e;
+}
+}),new objj_method(sel_getUid("newWith:"),function(_f,_10,_11){
+with(_f){
+var _12=objj_msgSend(objj_msgSend(_f,"new"),"initWithFrame:",_11);
+return _12;
 }
 })]);
 p;17;CompositeFigure.jt;1309;@STATIC;1.0;t;1290;

@@ -1,4 +1,4 @@
-@STATIC;1.0;p;9;CupDraw.jt;3415;@STATIC;1.0;i;23;CPCancelableTextField.ji;22;LPMultiLineTextField.ji;24;CPCustomRowTableColumn.ji;15;GeometryUtils.ji;14;HandleMagnet.ji;8;Figure.ji;17;CompositeFigure.ji;7;Model.ji;10;Property.ji;6;Grid.ji;9;Drawing.ji;14;DrawingModel.ji;8;Handle.ji;17;CompositeFigure.ji;10;Polyline.ji;12;Connection.ji;13;ImageFigure.ji;15;ToolboxFigure.ji;13;LabelFigure.ji;12;LinkFigure.ji;18;PropertiesFigure.ji;17;IconLabelFigure.ji;17;RectangleFigure.ji;13;GroupFigure.ji;11;ToolState.ji;27;SelectionToolInitialState.ji;15;SelectedState.ji;18;MoveFiguresState.ji;17;MoveHandleState.ji;23;MarqueeSelectionState.ji;6;Tool.ji;18;StateMachineTool.ji;15;SelectionTool.ji;26;AbstractCreateFigureTool.ji;30;AbstractCreateConnectionTool.ji;17;CreateImageTool.ji;17;CreateLabelTool.ji;9;Command.ji;14;GroupCommand.ji;16;UngroupCommand.ji;13;LockCommand.ji;15;UnlockCommand.ji;21;BringToFrontCommand.ji;19;SendToBackCommand.ji;21;BringForwardCommand.ji;21;SendBackwardCommand.ji;18;AlignLeftCommand.ji;19;AlignRightCommand.ji;20;AlignCenterCommand.ji;17;AlignTopCommand.ji;20;AlignBottomCommand.ji;20;AlignMiddleCommand.ji;16;EditorDelegate.jt;2285;objj_executeFile("CPCancelableTextField.j", YES);
+@STATIC;1.0;p;9;CupDraw.jt;3475;@STATIC;1.0;i;23;CPCancelableTextField.ji;22;LPMultiLineTextField.ji;24;CPCustomRowTableColumn.ji;15;GeometryUtils.ji;14;HandleMagnet.ji;8;Figure.ji;17;CompositeFigure.ji;7;Model.ji;10;Property.ji;6;Grid.ji;9;Drawing.ji;14;DrawingModel.ji;8;Handle.ji;17;CompositeFigure.ji;10;Polyline.ji;12;Connection.ji;13;ImageFigure.ji;15;ToolboxFigure.ji;13;LabelFigure.ji;12;LinkFigure.ji;18;PropertiesFigure.ji;17;IconLabelFigure.ji;17;RectangleFigure.ji;14;CircleFigure.ji;13;GroupFigure.ji;11;ToolState.ji;27;SelectionToolInitialState.ji;15;SelectedState.ji;18;MoveFiguresState.ji;17;MoveHandleState.ji;23;MarqueeSelectionState.ji;6;Tool.ji;18;StateMachineTool.ji;15;SelectionTool.ji;26;AbstractCreateFigureTool.ji;30;AbstractCreateConnectionTool.ji;17;CreateImageTool.ji;17;CreateLabelTool.ji;9;Command.ji;14;GroupCommand.ji;16;UngroupCommand.ji;13;LockCommand.ji;15;UnlockCommand.ji;21;BringToFrontCommand.ji;19;SendToBackCommand.ji;21;BringForwardCommand.ji;21;SendBackwardCommand.ji;18;AlignLeftCommand.ji;19;AlignRightCommand.ji;20;AlignCenterCommand.ji;17;AlignTopCommand.ji;20;AlignBottomCommand.ji;20;AlignMiddleCommand.ji;16;EditorDelegate.jt;2326;objj_executeFile("CPCancelableTextField.j", YES);
 objj_executeFile("LPMultiLineTextField.j", YES);
 objj_executeFile("CPCustomRowTableColumn.j", YES);
 objj_executeFile("GeometryUtils.j", YES);
@@ -21,6 +21,7 @@ objj_executeFile("LinkFigure.j", YES);
 objj_executeFile("PropertiesFigure.j", YES);
 objj_executeFile("IconLabelFigure.j", YES);
 objj_executeFile("RectangleFigure.j", YES);
+objj_executeFile("CircleFigure.j", YES);
 objj_executeFile("GroupFigure.j", YES);
 objj_executeFile("ToolState.j", YES);
 objj_executeFile("SelectionToolInitialState.j", YES);
@@ -951,6 +952,50 @@ var meta_class = the_class.isa;class_addMethods(the_class, [new objj_method(sel_
     objj_msgSend(aCoder, "encodeBool:forKey:", (_hideOverflow?NO:YES), LPMultiLineTextFieldScrollableKey);
 }
 },["void","CPCoder"])]);
+}
+
+p;14;CircleFigure.jt;2367;@STATIC;1.0;t;2348;{var the_class = objj_allocateClassPair(Figure, "CircleFigure"),
+meta_class = the_class.isa;objj_registerClassPair(the_class);
+class_addMethods(the_class, [new objj_method(sel_getUid("initWithFrame:"), function $CircleFigure__initWithFrame_(self, _cmd, aFrame)
+{ with(self)
+{
+ self = objj_msgSendSuper({ receiver:self, super_class:objj_getClass("CircleFigure").super_class }, "initWithFrame:",  aFrame);
+ if (self) {
+  objj_msgSend(handles, "addObject:",  objj_msgSend(Handle, "target:selector:",  self,  "topLeft"));
+  objj_msgSend(handles, "addObject:",  objj_msgSend(Handle, "target:selector:",  self,  "topMiddle"));
+  objj_msgSend(handles, "addObject:",  objj_msgSend(Handle, "target:selector:",  self,  "topRight"));
+  objj_msgSend(handles, "addObject:",  objj_msgSend(Handle, "target:selector:",  self,  "middleLeft"));
+  objj_msgSend(handles, "addObject:",  objj_msgSend(Handle, "target:selector:",  self,  "middleRight"));
+  objj_msgSend(handles, "addObject:",  objj_msgSend(Handle, "target:selector:",  self,  "bottomLeft"));
+  objj_msgSend(handles, "addObject:",  objj_msgSend(Handle, "target:selector:",  self,  "bottomMiddle"));
+  objj_msgSend(handles, "addObject:",  objj_msgSend(Handle, "target:selector:",  self,  "bottomRight"));
+  return self;
+ }
+}
+},["id","CGRect"]), new objj_method(sel_getUid("drawRect:on:"), function $CircleFigure__drawRect_on_(self, _cmd, rect, context)
+{ with(self)
+{
+        CGContextSetFillColor(context, objj_msgSend(self, "backgroundColor"));
+        CGContextFillEllipseInRect(context, objj_msgSend(self, "bounds"));
+  CGContextSetLineWidth(context, 0.5);
+        CGContextSetStrokeColor(context, objj_msgSend(self, "foregroundColor"));
+        CGContextStrokeEllipseInRect(context, objj_msgSend(self, "bounds"));
+}
+},["void","CGRect","id"])]);
+class_addMethods(meta_class, [new objj_method(sel_getUid("newAt:"), function $CircleFigure__newAt_(self, _cmd, aPoint)
+{ with(self)
+{
+ var frame = CGRectMake(aPoint.x, aPoint.y, 50, 50);
+ var widget = objj_msgSend(objj_msgSend(self, "new"), "initWithFrame:",  frame);
+ return widget;
+}
+},["CircleFigure","CGPoint"]), new objj_method(sel_getUid("newWith:"), function $CircleFigure__newWith_(self, _cmd, aFrame)
+{ with(self)
+{
+ var widget = objj_msgSend(objj_msgSend(self, "new"), "initWithFrame:",  aFrame);
+ return widget;
+}
+},["CircleFigure","id"])]);
 }
 
 p;17;CompositeFigure.jt;1823;@STATIC;1.0;t;1804;{var the_class = objj_allocateClassPair(Figure, "CompositeFigure"),

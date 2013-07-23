@@ -23,6 +23,7 @@
 
 @import "Connecting/Tool/CreateRectangleTool.j"
 @import "Connecting/Tool/CreateRectangleConnectionTool.j"
+@import "Connecting/Tool/CreateCircleTool.j"
 
 @implementation AppController : CPObject
 {
@@ -57,6 +58,11 @@
 		addTool: [CreateRectangleConnectionTool drawing: _drawing] 
 		withTitle: @"Rectangle connection" 
 		image: @"Resources/Connection.png"];
+
+	[basicToolbox 
+		addTool: [CreateCircleTool drawing: _drawing] 
+		withTitle: @"Create circle" 
+		image: @"Resources/Circle.png"];
 
 	var commonToolbox = [ToolboxFigure initializeWith: _drawing at: CGPointMake(800,70)];
 	[commonToolbox columns: 2];
