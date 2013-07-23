@@ -1131,7 +1131,7 @@ class_addMethods(meta_class, [new objj_method(sel_getUid("connect:with:"), funct
 },["Connection","Figure","Figure","id"])]);
 }
 
-p;8;Figure.jt;16178;@STATIC;1.0;t;16158;{var the_class = objj_allocateClassPair(CPView, "Figure"),
+p;8;Figure.jt;16478;@STATIC;1.0;t;16458;{var the_class = objj_allocateClassPair(CPView, "Figure"),
 meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("handles"), new objj_ivar("_inConnections"), new objj_ivar("_outConnections"), new objj_ivar("_backgroundColor"), new objj_ivar("_foregroundColor"), new objj_ivar("_selectable"), new objj_ivar("_moveable"), new objj_ivar("_editable"), new objj_ivar("_model"), new objj_ivar("_selected")]);
 objj_registerClassPair(the_class);
 class_addMethods(the_class, [new objj_method(sel_getUid("init"), function $Figure__init(self, _cmd)
@@ -1389,7 +1389,12 @@ class_addMethods(the_class, [new objj_method(sel_getUid("init"), function $Figur
  var newFrame = CGRectMake(aPoint.x, oldFrame.origin.y, oldFrame.size.width + widthOffset, oldFrame.size.height + heightOffset);
  objj_msgSend(self, "setFrame:",  newFrame);
 }
-},["void",null]), new objj_method(sel_getUid("middleRight"), function $Figure__middleRight(self, _cmd)
+},["void",null]), new objj_method(sel_getUid("center"), function $Figure__center(self, _cmd)
+{ with(self)
+{
+ return CGPointMake(objj_msgSend(self, "frame").origin.x + (objj_msgSend(self, "frame").size.width / 2), objj_msgSend(self, "frame").origin.y + (objj_msgSend(self, "frame").size.height / 2));
+}
+},["CPPoint"]), new objj_method(sel_getUid("middleRight"), function $Figure__middleRight(self, _cmd)
 { with(self)
 {
  return CGPointMake(objj_msgSend(self, "frame").origin.x + objj_msgSend(self, "frame").size.width, objj_msgSend(self, "frame").origin.y + (objj_msgSend(self, "frame").size.height / 2));
@@ -2571,7 +2576,7 @@ class_addMethods(meta_class, [new objj_method(sel_getUid("name:value:"), functio
 },["Property","id","id","id","id"])]);
 }
 
-p;30;AbstractCreateConnectionTool.jt;3934;@STATIC;1.0;t;3915;{var the_class = objj_allocateClassPair(Tool, "AbstractCreateConnectionTool"),
+p;30;AbstractCreateConnectionTool.jt;4109;@STATIC;1.0;t;4090;{var the_class = objj_allocateClassPair(Tool, "AbstractCreateConnectionTool"),
 meta_class = the_class.isa;class_addIvars(the_class, [new objj_ivar("_connection"), new objj_ivar("_initialFigure"), new objj_ivar("_figureClass"), new objj_ivar("_validStartingConnection")]);
 objj_registerClassPair(the_class);
 class_addMethods(the_class, [new objj_method(sel_getUid("figureClass:"), function $AbstractCreateConnectionTool__figureClass_(self, _cmd, aFigureClass)
@@ -2619,8 +2624,8 @@ class_addMethods(the_class, [new objj_method(sel_getUid("figureClass:"), functio
   var acceptsNewEndingConnection = objj_msgSend(self, "acceptsNewEndingConnection:",  figure);
   if (acceptsNewEndingConnection) {
    var connectionFigure = objj_msgSend(_figureClass, "source:target:points:",  _initialFigure,  figure,  nil);
-   objj_msgSend(_figureClass, "connect:with:",  connectionFigure,  _initialFigure);
    objj_msgSend(_drawing, "addFigure:",  connectionFigure);
+   objj_msgSend(self, "postConnectionCreated:",  connectionFigure);
   } else {
    objj_msgSend(_connection, "foregroundColor:",  objj_msgSend(CPColor, "colorWithHexString:",  "CC0000"));
    objj_msgSend(_connection, "lineWidth:",  2);
@@ -2636,7 +2641,11 @@ class_addMethods(the_class, [new objj_method(sel_getUid("figureClass:"), functio
  _initialFigure = nil;
  objj_msgSend(self, "activateSelectionTool");
 }
-},["void","CPEvent"])]);
+},["void","CPEvent"]), new objj_method(sel_getUid("postConnectionCreated:"), function $AbstractCreateConnectionTool__postConnectionCreated_(self, _cmd, aConnectionFigure)
+{ with(self)
+{
+}
+},["void","Connection"])]);
 class_addMethods(meta_class, [new objj_method(sel_getUid("drawing:"), function $AbstractCreateConnectionTool__drawing_(self, _cmd, aDrawing)
 { with(self)
 {

@@ -15,19 +15,16 @@
 /**
  * @author "Esteban Robles Luna <esteban.roblesluna@gmail.com>"
  */
- 
-@implementation CreateRectangleTool : AbstractCreateFigureTool
+@implementation RectangleRelationshipConnection : Connection 
 {
 }
 
-- (void) createFigureAt: (id) aPoint on: (id) aDrawing
-{
-	var newFigure = [ExtendedRectangleFigure newAt: aPoint];
+- (id) initWithSource: (Figure) aSourceFigure target: (Figure) aTargetFigure points: (id) anArrayOfPoints
+{ 
+	[super initWithSource: aSourceFigure target: aTargetFigure points: anArrayOfPoints];
 	
-	[newFigure backgroundColor: [CPColor whiteColor]];
-
-	[aDrawing addFigure: newFigure];
-	[self activateSelectionTool];
+	[self model: [RectangleRelationshipModel new]];
+		
+	return self;
 }
-
 @end

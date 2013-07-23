@@ -15,19 +15,16 @@
 /**
  * @author "Esteban Robles Luna <esteban.roblesluna@gmail.com>"
  */
- 
-@implementation CreateRectangleTool : AbstractCreateFigureTool
+@implementation ExtendedRectangleModel : Model
 {
 }
 
-- (void) createFigureAt: (id) aPoint on: (id) aDrawing
+- (id) init
 {
-	var newFigure = [ExtendedRectangleFigure newAt: aPoint];
+	[super init];
 	
-	[newFigure backgroundColor: [CPColor whiteColor]];
-
-	[aDrawing addFigure: newFigure];
-	[self activateSelectionTool];
+	[self addProperty: @"color" displayName: @"Color" value: @"FFFFFF"];
+	
+	return self;
 }
-
 @end

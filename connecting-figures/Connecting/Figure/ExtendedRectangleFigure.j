@@ -15,19 +15,22 @@
 /**
  * @author "Esteban Robles Luna <esteban.roblesluna@gmail.com>"
  */
- 
-@implementation CreateRectangleTool : AbstractCreateFigureTool
-{
-}
+@implementation ExtendedRectangleFigure : RectangleFigure 
+{ 
+} 
 
-- (void) createFigureAt: (id) aPoint on: (id) aDrawing
-{
-	var newFigure = [ExtendedRectangleFigure newAt: aPoint];
+- (id) initWithFrame: (CGRect) aFrame
+{ 
+	[super initWithFrame: aFrame];
+	[self model: [ExtendedRectangleModel new]];
 	
-	[newFigure backgroundColor: [CPColor whiteColor]];
-
-	[aDrawing addFigure: newFigure];
-	[self activateSelectionTool];
+	return self;
 }
 
+- (void) modelChanged
+{
+	var newColor = [CPColor colorWithHexString: [[self model] propertyValue: @"color"]];
+	[self backgroundColor: newColor];
+	[self invalidate];
+}
 @end

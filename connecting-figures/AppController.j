@@ -15,6 +15,12 @@
 @import <Foundation/CPObject.j>
 @import <CupDraw/CupDraw.j>
 
+@import "Connecting/Model/ExtendedRectangleModel.j"
+@import "Connecting/Model/RectangleRelationshipModel.j"
+
+@import "Connecting/Figure/ExtendedRectangleFigure.j"
+@import "Connecting/Figure/RectangleRelationshipConnection.j"
+
 @import "Connecting/Tool/CreateRectangleTool.j"
 @import "Connecting/Tool/CreateRectangleConnectionTool.j"
 
@@ -45,12 +51,12 @@
 	[basicToolbox 
 		addTool: [CreateRectangleTool drawing: _drawing] 
 		withTitle: @"Create rectangle" 
-		image: @"Resources/groovy.gif"];
+		image: @"Resources/Rectangle.png"];
 
 	[basicToolbox 
 		addTool: [CreateRectangleConnectionTool drawing: _drawing] 
-		withTitle: @"Next in chain connection" 
-		image: @"Resources/nextInChainConnection.png"];
+		withTitle: @"Rectangle connection" 
+		image: @"Resources/Connection.png"];
 
 	var commonToolbox = [ToolboxFigure initializeWith: _drawing at: CGPointMake(800,70)];
 	[commonToolbox columns: 2];

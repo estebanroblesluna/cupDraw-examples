@@ -19,14 +19,32 @@
 {
 }
 
++ (id) drawing: (Drawing) aDrawing
+{
+	return [self drawing: aDrawing figure: [RectangleRelationshipConnection class]];
+}
+
 - (id) acceptsNewStartingConnection: (id) aFigure
 {
-	return (aFigure != nil) && [aFigure isKindOfClass: [RectangleFigure class]];
+	return (aFigure != nil) && [aFigure isKindOfClass: [ExtendedRectangleFigure class]];
 }
 
 - (id) acceptsNewEndingConnection: (id) aFigure
 {
-	return (aFigure != nil) && [aFigure isKindOfClass: [RectangleFigure class]];
+	return (aFigure != nil) && [aFigure isKindOfClass: [ExtendedRectangleFigure class]];
+}
+
+- (void) postConnectionCreated: (Connection) aRectangleRelationshipConnection
+{
+	var connectionModel = [aRectangleRelationshipConnection model];
+	var nameLabel = [IconLabelFigure 
+		newAt: [aRectangleRelationshipConnection center] 
+		iconUrl: @"Resources/Connection.png"];
+
+	[nameLabel model: connectionModel];
+	[nameLabel checkModelFeature: @"name"];
+
+	[_drawing addFigure: nameLabel];
 }
 
 @end
